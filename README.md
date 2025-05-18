@@ -25,7 +25,7 @@ python generate_documentation.py
 The documentation will be saved in `exam_documentation.md`
 
 ## Group Members
-[Add your group members' names and roles here]
+Tobias, Christian, Maria, Nikola
 
 ## Project Structure
 - Data preprocessing and cleaning
