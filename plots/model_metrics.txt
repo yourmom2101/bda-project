@@ -1,0 +1,7 @@
+Model Performance Metrics:
+========================
+
+R² Score: 0.1697
+RMSE: 882263.5824
+MAE: 46419.1562
+Mean Absolute Percentage Error: inf

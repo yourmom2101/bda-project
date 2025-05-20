@@ -1,4 +1,3 @@
-
 # Property Price Prediction Model - Exam Documentation
 
 ## 1. Project Overview
@@ -211,3 +210,87 @@
 * Real estate market analysis
 * Property valuation methods
 * Market trend analysis
+
+## Model Interpretability
+
+### SHAP (SHapley Additive exPlanations)
+SHAP values provide a unified measure of feature importance that shows how each feature contributes to the model's predictions.
+
+#### SHAP Summary Plot (`shap_summary.png`)
+- Shows the overall importance of each feature
+- Features are ordered by their impact on predictions
+- Red indicates higher feature values, blue indicates lower values
+- The width of each feature's impact shows its importance
+- Helps identify which features have the most influence on predictions
+
+#### SHAP Dependence Plots (`shap_dependence_[feature].png`)
+- Shows how each top feature affects predictions
+- Reveals non-linear relationships between features and predictions
+- Helps understand feature interactions
+- Shows the distribution of feature values
+- Useful for identifying potential feature thresholds
+
+### LIME (Local Interpretable Model-agnostic Explanations)
+LIME provides local explanations for individual predictions, making the model's decisions more transparent.
+
+#### LIME Explanation Plots (`lime_explanation_[1-3].png`)
+- Explains individual predictions
+- Shows which features were most important for specific predictions
+- Provides both positive and negative contributions
+- Helps understand why the model made particular predictions
+- Useful for explaining predictions to non-technical stakeholders
+
+### Interpreting the Visualizations
+
+1. **SHAP Summary Plot**:
+   - Look for features with wide distributions
+   - Red regions indicate higher feature values
+   - Blue regions indicate lower feature values
+   - The width shows the magnitude of impact
+
+2. **SHAP Dependence Plots**:
+   - Vertical spread shows interaction effects
+   - Horizontal axis shows feature values
+   - Vertical axis shows SHAP values
+   - Color indicates another important feature
+
+3. **LIME Explanations**:
+   - Green bars show positive contributions
+   - Red bars show negative contributions
+   - Bar length shows magnitude of impact
+   - Feature values are shown in parentheses
+
+### Key Insights from Interpretability
+
+1. **Feature Importance**:
+   - Most important features for predictions
+   - How features interact with each other
+   - Non-linear relationships in the data
+
+2. **Model Behavior**:
+   - How the model makes decisions
+   - Which features drive predictions
+   - Potential biases in the model
+
+3. **Business Value**:
+   - Explainable predictions
+   - Transparent decision-making
+   - Trust in model outputs
+
+### Using Interpretability in Practice
+
+1. **Model Validation**:
+   - Verify feature importance aligns with domain knowledge
+   - Check for unexpected feature interactions
+   - Identify potential data quality issues
+
+2. **Feature Engineering**:
+   - Guide creation of new features
+   - Identify important feature combinations
+   - Optimize feature selection
+
+3. **Model Improvement**:
+   - Target specific areas for improvement
+   - Identify potential biases
+   - Guide hyperparameter tuning
+ 
