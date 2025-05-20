@@ -328,6 +328,69 @@ def generate_visualizations(X_test, y_test, y_pred, model_pipeline, df):
     plt.tight_layout()
     plt.savefig('plots/residuals.png', dpi=300, bbox_inches='tight')
     plt.close()
+    
+    # 5. Price Distribution
+    plt.figure(figsize=(10, 6))
+    sns.histplot(df['Sale_price'], bins=50, kde=True)
+    plt.title('Distribution of Property Prices')
+    plt.xlabel('Price ($)')
+    plt.ylabel('Count')
+    plt.gca().xaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'${x:,.0f}'))
+    plt.tight_layout()
+    plt.savefig('plots/price_distribution.png', dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    # 6. Correlation Heatmap
+    plt.figure(figsize=(12, 10))
+    numeric_cols = df.select_dtypes(include=[np.number]).columns
+    correlation_matrix = df[numeric_cols].corr()
+    sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', center=0)
+    plt.title('Feature Correlation Heatmap')
+    plt.tight_layout()
+    plt.savefig('plots/correlation_heatmap.png', dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    # 7. Feature vs Price Scatter Plots
+    key_features = ['Fin_sqft', 'Lotsize', 'Year_Built', 'Total_Bathrooms', 'Bdrms']
+    fig, axes = plt.subplots(2, 3, figsize=(15, 10))
+    axes = axes.ravel()
+    
+    for idx, feature in enumerate(key_features):
+        if idx < len(axes):
+            sns.scatterplot(data=df, x=feature, y='Sale_price', alpha=0.5, ax=axes[idx])
+            axes[idx].set_title(f'{feature} vs Price')
+            axes[idx].set_ylabel('Price ($)')
+            axes[idx].yaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'${x:,.0f}'))
+    
+    plt.tight_layout()
+    plt.savefig('plots/feature_vs_price.png', dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    # 8. Error Analysis
+    plt.figure(figsize=(10, 6))
+    error_percentage = np.abs((y_test - y_pred) / y_test) * 100
+    sns.histplot(error_percentage, bins=50, kde=True)
+    plt.title('Distribution of Prediction Errors')
+    plt.xlabel('Absolute Percentage Error (%)')
+    plt.ylabel('Count')
+    plt.tight_layout()
+    plt.savefig('plots/error_analysis.png', dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    # 9. Save Model Metrics
+    metrics = {
+        'R² Score': r2_score(y_test, y_pred),
+        'Explained Variance': explained_variance_score(y_test, y_pred),
+        'RMSE': np.sqrt(mean_squared_error(y_test, y_pred)),
+        'MAE': mean_absolute_error(y_test, y_pred),
+        'Mean Absolute Percentage Error': np.mean(np.abs((y_test - y_pred) / y_test)) * 100
+    }
+    
+    with open('plots/model_metrics.txt', 'w') as f:
+        f.write('Model Performance Metrics:\n')
+        f.write('========================\n\n')
+        for metric, value in metrics.items():
+            f.write(f'{metric}: {value:.4f}\n')
 
 if __name__ == "__main__":
     main() 
