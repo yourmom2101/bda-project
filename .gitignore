@@ -41,7 +41,7 @@ ENV/
 models/
 
 # Data files
-*.csv
+# *.csv
 *.xlsx
 *.xls
 
