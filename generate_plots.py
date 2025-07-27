@@ -21,7 +21,7 @@ if not os.path.exists('plots'):
 
 # Load and prepare data
 print("Loading and preparing test data...")
-df = pd.read_csv('/Users/nikolazalcmane/Documents/BDA/cleaned_property_sales_data.csv')
+df = pd.read_csv('data/cleaned_property_sales_data.csv')
 
 # Create derived features
 df['Property_Age'] = 2024 - df['Year_Built']

@@ -16,7 +16,6 @@ import seaborn as sns
 import warnings
 import joblib
 import os
-import shap
 from lime import lime_tabular
 warnings.filterwarnings('ignore')
 
