@@ -25,7 +25,7 @@ python generate_documentation.py
 The documentation will be saved in `exam_documentation.md`
 
 ## Group Members
-Tobias, Christian, Maria, Nikola
+Maria Todorova and Nikola Zalcmane
 
 ## Project Structure
 - Data preprocessing and cleaning
@@ -99,9 +99,6 @@ source venv/bin/activate
 # Install dependencies
 pip install -r requirements.txt
 ```
-
-## Contact
-[Add your contact information here] 
 
 ## Limitations and Potential Improvements
 

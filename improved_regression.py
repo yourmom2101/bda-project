@@ -10,7 +10,7 @@ import seaborn as sns
 
 print("Loading data...")
 # Load data
-df = pd.read_csv('/Users/nikolazalcmane/Documents/BDA/cleaned_property_sales_data.csv')
+df = pd.read_csv('data/cleaned_property_sales_data.csv')
 
 print("Cleaning data...")
 # Basic cleaning
