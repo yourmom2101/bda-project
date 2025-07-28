@@ -45,8 +45,58 @@ Tobias, Christian, Maria, Nikola
   - seaborn
   - joblib
 
-## Installation
+## Setting up the Project
+
+### Prerequisites
+- Python 3.8 or higher
+- pip (Python package installer)
+
+### Installation Steps
+
+1. **Clone or download the project** to your local machine
+
+2. **Navigate to the project directory**:
 ```bash
+cd path/to/bda-project
+```
+
+3. **Install required dependencies**:
+```bash
+pip install -r requirements.txt
+```
+
+Alternatively, you can install packages individually:
+```bash
+pip install pandas>=1.3.0
+pip install numpy>=1.20.0
+pip install scikit-learn>=0.24.0
+pip install xgboost>=1.4.0
+pip install matplotlib>=3.4.0
+pip install seaborn>=0.11.0
+pip install joblib>=1.0.0
+pip install shap>=0.41.0
+pip install lime>=0.2.0
+```
+
+4. **Verify installation** by running:
+```bash
+python -c "import pandas, numpy, sklearn, xgboost, matplotlib, seaborn, joblib, shap, lime; print('All packages installed successfully!')"
+```
+
+### Virtual Environment (Recommended)
+For better dependency management, consider using a virtual environment:
+
+```bash
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+# On Windows:
+venv\Scripts\activate
+# On macOS/Linux:
+source venv/bin/activate
+
+# Install dependencies
 pip install -r requirements.txt
 ```
 
