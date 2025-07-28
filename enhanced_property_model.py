@@ -340,12 +340,34 @@ def generate_visualizations(X_test, y_test, y_pred, model_pipeline, df):
     plt.savefig('plots/price_distribution.png', dpi=300, bbox_inches='tight')
     plt.close()
     
-    # 6. Correlation Heatmap
-    plt.figure(figsize=(12, 10))
-    numeric_cols = df.select_dtypes(include=[np.number]).columns
-    correlation_matrix = df[numeric_cols].corr()
-    sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', center=0)
-    plt.title('Feature Correlation Heatmap')
+    # 6. Correlation Heatmap (Show only top 10 features most correlated with Sale_price)
+    plt.figure(figsize=(10, 8))
+
+    # Compute correlations with Sale_price
+    corr_with_price = df.corr()['Sale_price'].abs().sort_values(ascending=False)
+    top_features = corr_with_price.head(10).index.tolist()
+
+    # Compute correlation matrix for these features
+    corr_matrix = df[top_features].corr()
+
+    # Mask upper triangle
+    mask = np.triu(np.ones_like(corr_matrix, dtype=bool))
+
+    sns.heatmap(
+        corr_matrix,
+        mask=mask,
+        annot=True,
+        fmt='.2f',
+        cmap='coolwarm',
+        center=0,
+        square=True,
+        linewidths=0.5,
+        cbar_kws={'shrink': .8},
+        annot_kws={'size': 10}
+    )
+    plt.xticks(rotation=45, ha='right', fontsize=12)
+    plt.yticks(rotation=0, fontsize=12)
+    plt.title('Top 10 Feature Correlations with Sale Price', pad=20, fontsize=16)
     plt.tight_layout()
     plt.savefig('plots/correlation_heatmap.png', dpi=300, bbox_inches='tight')
     plt.close()
